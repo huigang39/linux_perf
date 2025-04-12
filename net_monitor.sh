@@ -87,13 +87,13 @@ EOF
 net_stat_info()
 {
 
-  if [[ -z "${SOFTNET_HEADER_PRINTED+x}" ]]; then
+  if [[ -z "${NET_HEADER_PRINTED+x}" ]]; then
 cat << 'EOF'
 # ---------------------------------------------------------------------------- #
 #                            TCP Abnormal Statistics                           #
 # ---------------------------------------------------------------------------- #
 EOF
-    declare -g SOFTNET_HEADER_PRINTED=1
+    declare -g NET_HEADER_PRINTED=1
   fi
 
   PATTERN=$1
