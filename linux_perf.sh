@@ -2,9 +2,13 @@
 
 CPU=$1
 
-IRQS=(161 162 163 164 165)
+IRQS=(129)
 
+# 隔离 CPU
+sudo tuna --cpus=$CPU --isolate
+
+# 将中断绑定到 CPU
 for irq in "${IRQS[@]}"; do
-    sudo bash -c "echo $CPU > /proc/irq/$irq/smp_affinity"
-    cat /proc/irq/$irq/smp_affinity | xxd -b
+    sudo tuna --irqs=$irq --cpus=$CPU --move
+    sudo tuna --irqs=$irq --show_irqs
 done
