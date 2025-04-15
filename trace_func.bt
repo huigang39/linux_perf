@@ -2,5 +2,7 @@
 
 kprobe:$1
 {
-    printf("%-20s\t%-8d\t%-8d\t%-20s\n", func, cpu, pid, comm);
+    @counter[0]++;
+    printf("%-20s\t%-8d\t%-8d\t%-20s\t%llu\t%d\n", func, cpu, pid, comm, nsecs, @counter[0]);
+    print(kstack)
 }
